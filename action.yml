@@ -1,0 +1,6 @@
+# action.yml
+name: 'Run ShellCheck'
+description: 'Run ShellCheck'
+runs:
+  using: 'docker'
+  image: 'docker://staranto/shellcheck-action'
