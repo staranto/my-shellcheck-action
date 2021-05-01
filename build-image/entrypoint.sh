@@ -1,11 +1,14 @@
 #! /bin/bash
 
-# Force a shellcheck error for testing
-echo 'XX $PWD YY'
-
 pwd
 tree
-find . -type f \( -name "*.sh" -or -name "*.bash" \)
+files=$(find . -type f \( -name "*.sh" -or -name "*.bash" \))
 
-shellcheck ./entrypoint.sh
-exit $?
+result=0
+for f in $files; do
+    printf "\033[0;35m $f \033[0m\n"
+    shellcheck -x "$f" || result=$?
+done
+
+exit $result
+
